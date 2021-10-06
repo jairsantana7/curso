@@ -3,11 +3,17 @@ let pessoa;
 let buttonAdicionaPaciente = document.querySelector("#adicionar-paciente");
 let form = document.querySelector("form");
 
-//CADASTRO
+//Z
+
 buttonAdicionaPaciente.addEventListener("click", function (event) {
   event.preventDefault();
   let pessoa = getFormulario(form);
   const pacienteTR = montaTabela(pessoa);
+
+  if (validaAltura(form.altura.value) || validaPeso(form.peso.value)) {
+    alert("Erro de validação! verifique os dados digitado e tente novamente");
+    return;
+  }
 
   //adicionar na table
   let tabela = document.querySelector("#tabela-pacientes");
@@ -52,3 +58,21 @@ function montaTD(dado, classe) {
 }
 
 //console.log(getFormulario(form));
+
+function validaPeso(peso) {
+  if (peso >= 1000 || peso <= 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function validaAltura(altura) {
+  if (altura >= 2000 || altura <= 0) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+//console.log(validaPeso(50));
